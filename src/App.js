@@ -27,7 +27,7 @@ export default class App extends React.Component {
           uniqueId={artist.id}
           artistName={artist.name} 
           firstAlbum={artist.first_album} 
-          onTour={artist.on_tour.toString()}
+          onTour={artist.on_tour}
           genre={artist.genre}
           ownerId={artist.owner_id} />
           )
