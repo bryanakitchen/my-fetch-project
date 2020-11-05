@@ -18,11 +18,13 @@ export default class Main extends React.Component {
   render() {
     return (
       <>
-        <Link to="/Create" className="links">Go to Artist Form</Link>
+        <Link to="/create" className="links">Go to Artist Form</Link>
+        <Link to="/artists/:id" className="links">Go to Detail Page</Link>
         <div className="group">
             {
             this.state.artistData.map(artist => 
             { return (
+            <Link to={`artist/${artist.artist}`} >
             <ArtistRender 
             uniqueId={artist.id}
             artistName={artist.name} 
@@ -30,6 +32,7 @@ export default class Main extends React.Component {
             onTour={artist.on_tour}
             genre={artist.genre}
             ownerId={artist.owner_id} />
+            </Link>
             )
             })
             }

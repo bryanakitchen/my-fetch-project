@@ -64,3 +64,7 @@ input, select {
   background-color: pink;
   text-decoration: none;
 }
+
+a:link {
+  text-decoration: none;
+}

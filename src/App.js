@@ -7,6 +7,7 @@ import {
 import './App.css';
 import Main from './Main.js';
 import Create from './Create.js';
+import Detail from './Detail.js';
 
 export default class App extends Component {
     render() {
@@ -23,6 +24,11 @@ export default class App extends Component {
                             path="/create" 
                             exact
                             render={(routerProps) => <Create {...routerProps} />} 
+                        />
+                        <Route 
+                            path="/artists/:id" 
+                            exact
+                            render={(routerProps) => <Detail {...routerProps} />} 
                         />
                     </Switch>
                 </Router>
