@@ -24,7 +24,7 @@ export default class Main extends React.Component {
             {
             this.state.artistData.map(artist => 
             { return (
-            <Link to={`artist/${artist.artist}`} >
+            <Link to={`artists/${artist.id}`} >
             <ArtistRender 
             uniqueId={artist.id}
             artistName={artist.name} 
