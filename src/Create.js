@@ -80,14 +80,17 @@ export default class Create extends React.Component {
                             On Tour Status (true/false)
                             <input onChange={e => this.setState({ tourStatus: e.target.value})} type="text" />
                         </label>
-                        <select onChange={this.handleChange}>
-                            {
-                            this.state.genres.map(genre => 
-                            <option key={genre.id} value={genre.id}>
-                                {genre.name}
-                            </option>)
-                            }
-                        </select>
+                        <label>
+                            Select Genre
+                            <select onChange={this.handleChange}>
+                                {
+                                this.state.genres.map(genre => 
+                                <option key={genre.id} value={genre.id}>
+                                    {genre.name}
+                                </option>)
+                                }
+                            </select>
+                        </label>
                         <button>Submit</button>
                     </form>
                 </div>
