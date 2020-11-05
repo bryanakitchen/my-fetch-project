@@ -12,8 +12,7 @@ export default class Main extends React.Component {
 
   componentDidMount = async () => {
     const response = await fetch.get(`https://mighty-gorge-08883.herokuapp.com/artists`);
-      console.log(response.body)
-      await this.setState({ artistData: response.body });
+    await this.setState({ artistData: response.body });
   }
 
 
