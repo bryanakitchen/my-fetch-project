@@ -20,7 +20,7 @@ export default class App extends Component {
                             render={(routerProps) => <Main {...routerProps} />} 
                         />
                         <Route 
-                            path="/Create" 
+                            path="/create" 
                             exact
                             render={(routerProps) => <Create {...routerProps} />} 
                         />

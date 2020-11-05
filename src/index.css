@@ -54,3 +54,13 @@ form {
 input {
   margin-left: 10px;
 }
+
+.links {
+  display: flex;
+  justify-content: center;
+  font-size: 17px;
+  border: solid 1px black;
+  width: 150px;
+  background-color: pink;
+  text-decoration: none;
+}
