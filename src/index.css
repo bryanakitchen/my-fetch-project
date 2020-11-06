@@ -51,7 +51,7 @@ form {
   justify-content: center;
 }
 
-input {
+input, select {
   margin-left: 10px;
 }
 
@@ -63,4 +63,17 @@ input {
   width: 150px;
   background-color: pink;
   text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+button {
+  margin-top: 7px;
+}
+
+.delete-button {
+  background-color: rgb(105, 27, 27);
+  color: pink;
 }
