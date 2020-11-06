@@ -68,3 +68,12 @@ input, select {
 a:link {
   text-decoration: none;
 }
+
+button {
+  margin-top: 7px;
+}
+
+.delete-button {
+  background-color: rgb(105, 27, 27);
+  color: pink;
+}

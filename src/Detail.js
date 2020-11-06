@@ -1,8 +1,6 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
-import fetch from 'superagent';
 import ArtistRender from './ArtistRender';
-import { getAllGenres, createArtist, updateArtist, getSingleArtist } from './APIUtils.js';
+import { getAllGenres, updateArtist, getSingleArtist, deleteArtist } from './APIUtils.js';
 
 const theOnlyUser = {
     userId: 1
@@ -55,12 +53,12 @@ export default class Detail extends React.Component {
         this.props.history.push('/');
     }
 
-    // handleChange = (e) => {
-    //     this.setState({ genreId: e.target.value});
-    // }
+    handleDelete = async (e) => {
+        await deleteArtist(this.props.match.params.id);
+        this.props.history.push('/');
+    }
 
     render() {
-        console.log(this.state.artistTour)
         return (
             <div>
                 <ArtistRender 
@@ -103,6 +101,8 @@ export default class Detail extends React.Component {
                             </select>
                         </label>
                         <button>Update</button>
+                        <button onClick={this.handleDelete} className="delete-button">Delete Artist</button>
+                        
                     </form>
             </div>
         )
