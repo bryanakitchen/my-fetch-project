@@ -2,24 +2,71 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import fetch from 'superagent';
 import ArtistRender from './ArtistRender';
+import { getAllGenres, createArtist, updateArtist, getSingleArtist } from './APIUtils.js';
 
+const theOnlyUser = {
+    userId: 1
+};
 
 export default class Detail extends React.Component {
     
     state = {
-        artistData: '',
+        genres: [],
+        artistData: {},
+        matchGenre: {name: ''}
     }
 
     componentDidMount = async () => {
-        const response = await fetch.get(`https://mighty-gorge-08883.herokuapp.com/artists/${this.props.match.params.id}`);
-    console.log(response.body)
-        this.setState({ artistData: response.body})
+        const genres = await getAllGenres();
+        const artist = await getSingleArtist(this.props.match.params.id);
+        
+        // const genreString = artist.genre;
+        
+        const matchGenre = genres.find((genre) => {
+            return genre.id === artist.genre_id
+        })
+
+        this.setState({ 
+            artistData: artist,
+            genres: genres,
+            matchGenre: matchGenre
+         })
     }
     
+    handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        await updateArtist( 
+            this.props.match.params.id, 
+            {
+            name: this.state.artistName,
+            first_album: this.state.albumYear,
+            on_tour: this.state.tourStatus,
+            genre_id: this.state.genreId,
+            owner_id: theOnlyUser.userId,
+        })
+    // direct user home to see the updated list with their new artist.
+        this.props.history.push('/');
+    }
+
+    handleChange = (e) => {
+        console.log(e.target.value);
+        this.setState({ genreId: e.target.value});
+    }
+
+
     render() {
+        console.log(this.state.artistData, this.state.matchGenre, this.state.genres)
         return (
             <div>
-                <ArtistRender artistData={this.state.artistData} />
+                <ArtistRender 
+                uniqueId={this.state.artistData.id}
+                artistName={this.state.artistData.name} 
+                firstAlbum={this.state.artistData.first_album} 
+                onTour={this.state.artistData.on_tour}
+                genre={this.state.matchGenre.name}
+                ownerId={this.state.artistData.owner_id}
+                 />
 
                 <h2 className="form-header">Update an Artist</h2>
                     <form onSubmit={this.handleSubmit} className="the-form">

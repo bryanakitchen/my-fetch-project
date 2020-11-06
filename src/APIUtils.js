@@ -22,7 +22,7 @@ export async function getAllArtists() {
 
 export async function getSingleArtist(someId) {
     try {
-        const response = await request.get(`${URL}/$someId`);
+        const response = await request.get(`${URL}/${someId}`);
         return response.body; 
     } catch(err) {
         throw err;

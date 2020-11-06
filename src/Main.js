@@ -3,6 +3,7 @@ import React from 'react';
 import fetch from 'superagent';
 import ArtistRender from './ArtistRender.js';
 import { Link } from 'react-router-dom';
+import { getAllArtists } from './APIUtils';
 
 export default class Main extends React.Component {
   
@@ -11,8 +12,9 @@ export default class Main extends React.Component {
   }
 
   componentDidMount = async () => {
-    const response = await fetch.get(`https://mighty-gorge-08883.herokuapp.com/artists`);
-    await this.setState({ artistData: response.body });
+    const artistData = await getAllArtists();
+// need await?
+    this.setState({ artistData });
   }
 
   render() {
