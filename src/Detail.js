@@ -1,5 +1,4 @@
 import React from 'react';
-import ArtistRender from './ArtistRender';
 import { getAllGenres, updateArtist, getSingleArtist, deleteArtist } from './APIUtils.js';
 
 const theOnlyUser = {

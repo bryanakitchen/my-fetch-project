@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react';
-import fetch from 'superagent';
 import ArtistRender from './ArtistRender.js';
 import { Link } from 'react-router-dom';
 import { getAllArtists } from './APIUtils';
