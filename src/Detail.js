@@ -17,6 +17,8 @@ export default class Detail extends React.Component {
             {name: '',
             genre_id: 1},
         artistName: '',
+        artistYear: 0,
+        artistTour: '',
     }
 // set boolean as false and add radio buttons
     componentDidMount = async () => {
@@ -34,6 +36,9 @@ export default class Detail extends React.Component {
             genres: genres,
             matchGenre: matchGenre,
             artistName: artist.name,
+            artistYear: artist.first_album,
+            artistTour: artist.on_tour,
+            // artistGenre: artist.genre_id,
          })
     }
     
@@ -60,7 +65,7 @@ export default class Detail extends React.Component {
 
 
     render() {
-        console.log(this.state.matchGenre)
+        console.log()
         return (
             <div>
                 <ArtistRender 
@@ -80,17 +85,17 @@ export default class Detail extends React.Component {
                         </label>
                         <label>
                             First Album Release Year
-                            <input value={this.state.artistData.first_album} onChange={e => this.setState({ albumYear: e.target.value})} type="number" />
+                            <input value={this.state.artistYear} onChange={e => this.setState({ albumYear: e.target.value})} type="number" />
                         </label>
                         <label>
-                            ON TOUR TEST
-                                <input 
-                                selected={this.state.artistData.on_tour} 
-                                 onChange={e => this.setState({ tourStatus: e.target.value})} type="checkbox" name="booger" />
+                            On Tour Status
+                            <input 
+                            checked={this.state.artistTour} 
+                            onChange={e => this.setState({ tourStatus: e.target.value})} type="checkbox" name="booger" />
                         </label>
                         <label>
                             On Tour Status (true/false)
-                            <input value={this.state.artistData.on_tour} onChange={e => this.setState({ tourStatus: e.target.value})} type="text" />
+                            <input value={this.state.artistTour} onChange={e => this.setState({ tourStatus: e.target.value})} type="text" />
                         </label>
                         <label>
                             Select Genre
