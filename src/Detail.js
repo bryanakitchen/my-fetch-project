@@ -61,15 +61,6 @@ export default class Detail extends React.Component {
     render() {
         return (
             <div>
-                <ArtistRender 
-                uniqueId={this.state.artistData.id}
-                artistName={this.state.artistData.name} 
-                firstAlbum={this.state.artistData.first_album} 
-                onTour={this.state.artistData.on_tour}
-                genre={this.state.matchGenre.name}
-                ownerId={this.state.artistData.owner_id}
-                 />
-
                 <h2 className="form-header">Update an Artist</h2>
                     <form onSubmit={this.handleSubmit} className="the-form">
                         <label>
