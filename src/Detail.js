@@ -18,14 +18,12 @@ export default class Detail extends React.Component {
             genre_id: 1},
         artistName: '',
         artistYear: 0,
-        artistTour: '',
+        artistTour: false,
     }
-// set boolean as false and add radio buttons
+
     componentDidMount = async () => {
         const genres = await getAllGenres();
         const artist = await getSingleArtist(this.props.match.params.id);
-        
-        // const genreString = artist.genre;
         
         const matchGenre = genres.find((genre) => {
             return genre.id === artist.genre_id
@@ -38,7 +36,6 @@ export default class Detail extends React.Component {
             artistName: artist.name,
             artistYear: artist.first_album,
             artistTour: artist.on_tour,
-            // artistGenre: artist.genre_id,
          })
     }
     
@@ -49,8 +46,8 @@ export default class Detail extends React.Component {
             this.props.match.params.id, 
             {
             name: this.state.artistName,
-            first_album: this.state.albumYear,
-            on_tour: this.state.tourStatus,
+            first_album: this.state.artistYear,
+            on_tour: this.state.artistTour,
             genre_id: this.state.genreId,
             owner_id: theOnlyUser.userId,
         })
@@ -58,14 +55,12 @@ export default class Detail extends React.Component {
         this.props.history.push('/');
     }
 
-    handleChange = (e) => {
-        console.log(e.target.value);
-        this.setState({ genreId: e.target.value});
-    }
-
+    // handleChange = (e) => {
+    //     this.setState({ genreId: e.target.value});
+    // }
 
     render() {
-        console.log()
+        console.log(this.state.artistTour)
         return (
             <div>
                 <ArtistRender 
@@ -85,21 +80,17 @@ export default class Detail extends React.Component {
                         </label>
                         <label>
                             First Album Release Year
-                            <input value={this.state.artistYear} onChange={e => this.setState({ albumYear: e.target.value})} type="number" />
+                            <input value={this.state.artistYear} onChange={e => this.setState({ artistYear: e.target.value})} type="number" />
                         </label>
                         <label>
                             On Tour Status
                             <input 
                             checked={this.state.artistTour} 
-                            onChange={e => this.setState({ tourStatus: e.target.value})} type="checkbox" name="booger" />
-                        </label>
-                        <label>
-                            On Tour Status (true/false)
-                            <input value={this.state.artistTour} onChange={e => this.setState({ tourStatus: e.target.value})} type="text" />
+                            onChange={e => this.setState({ artistTour: e.target.checked})} type="checkbox" name="booger" />
                         </label>
                         <label>
                             Select Genre
-                            <select onChange={this.handleChange}>
+                            <select onChange={e => this.setState({ genreId: e.target.value})}>
                                 {
                                 this.state.genres.map(genre => 
                                 <option 
